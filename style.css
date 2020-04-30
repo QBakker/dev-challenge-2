@@ -8,15 +8,8 @@ span.start {
     background-color: #ffc107;
 }
 
-span.open {
-    background-color: #fff;
-}
-
-span.explored {
-    background-color: #28a745 !important;
-}
-
-span.noExit {
+.open,
+.noExit {
     background-color: #fff;
 }
 
@@ -24,6 +17,10 @@ span.wall {
     background-color: #000;
 }
 
+span.explored {
+    background-color: #28a745;
+}
+
 span.finish {
-    background-color: #ff0000 !important;
+    background-color: #ff0000;
 }

@@ -1,21 +1,17 @@
 var startPosition = document.getElementsByClassName("start")[0].id;
 var position = startPosition.split("-");
-var status = false;
 
 var currentRow = position[0];
 var currentBlock = position[1];
 var currentLocation = currentRow + "-" + currentBlock;
-var currentExits = 4;
 
 var getElement = document.getElementById(currentLocation);
-var div = getElement.className;
-var classNames = getElement.classList;
+var classNames = getElement.className;
 
 var path = [currentLocation];
 
 checkOptions();
-function checkOptions()
-{
+function checkOptions() {
     goRight();
     goDown();
     goLeft();
@@ -23,99 +19,82 @@ function checkOptions()
     goBack();
 }
 
-function updateValues()
-{
+function updateValues() {
     currentLocation = currentRow + "-" + currentBlock;
-    currentElement = document.getElementById(currentLocation);
-    classNames = currentElement.className;
+
+    getElement = document.getElementById(currentLocation);
+    classNames = getElement.className;
 }
 
-function checkPoint()
-{
-    currentElement.classList.add('explored');
+function checkPoint() {
+    getElement.classList.add("explored");
     path.push(currentLocation);
-    if (status === true) {
-
-    } else {
-        checkOptions();
-    }
+    checkOptions();
 }
 
-function checkStep()
-{   
-    if (classNames.includes('finish')) {
-        status = true;
+function checkStep() {
+    if (classNames.includes("finish")) {
         return true;
-    } else if (classNames.includes('explored')) {
+    } else if (classNames.includes("explored")) {
         return false;
-    } else if (classNames.includes('wall')) {
+    } else if (classNames.includes("wall")) {
         return false;
-    } else if (classNames.includes('open')) {
+    } else if (classNames.includes("open")) {
         return true;
     }
 }
 
-function goBack()
-{
-    currentElement.classList.remove('explored');
-    currentElement.classList.add('noExit');
+function goBack() {
+    getElement.classList.remove("explored");
+    getElement.classList.add("noExit");
     path.pop();
-    currentPosition = path[path.length -1];
-    currentLocation = currentPosition.split('-');
+    currentPosition = path[path.length - 1];
+    currentLocation = currentPosition.split("-");
     currentRow = currentLocation[0];
     currentBlock = currentLocation[1];
     updateValues();
 }
 
-function goDown()
-{
+function goDown() {
     currentRow++;
     updateValues();
     if (checkStep()) {
         checkPoint();
     } else {
         currentRow--;
-        currentExits--;
         updateValues();
     }
 }
 
-function goLeft()
-{
+function goLeft() {
     currentBlock--;
     updateValues();
     if (checkStep()) {
         checkPoint();
     } else {
         currentBlock++;
-        currentExits--;
         updateValues();
     }
 }
 
-function goUp()
-{
+function goUp() {
     currentRow--;
     updateValues();
     if (checkStep()) {
         checkPoint();
     } else {
         currentRow++;
-        currentExits--;
         updateValues();
     }
 }
 
-function goRight()
-{
+function goRight() {
     currentBlock++;
     updateValues();
     if (checkStep()) {
         checkPoint();
     } else {
         currentBlock--;
-        currentExits--;
         updateValues();
     }
 }
-

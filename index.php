@@ -1,5 +1,5 @@
 <?php
-$file = file("inputbinary.txt");
+$file = file("input.txt");
 $first = false;
 $last = false;
 ?>
@@ -28,12 +28,12 @@ $last = false;
                 <?php
                 $chars = str_split($line);
                 foreach ($chars as $charKey => $char) {
-                    if ($char === '1') {
+                    if ($char === '1' || $char === '*') {
                 ?>
                         <span id="<?php echo $rowKey . "-" . $charKey; ?>" class="block wall"></span>
                         <?php
                     }
-                    if ($char === '0') {
+                    if ($char === '0' || $char === ' ') {
                         if ($first === false) {
                             $first = true;
                         ?>
